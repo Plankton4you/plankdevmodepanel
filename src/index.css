@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 225 55% 15%;
+  --foreground: 0 0% 98%;
+  --muted: 226 30% 20%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 222 47% 21%;
+  --popover-foreground: 0 0% 98%;
+  --card: 225 60% 18%;
+  --card-foreground: 0 0% 98%;
+  --border: 226 40% 25%;
+  --input: 226 40% 25%;
+  --primary: 210 100% 50%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 225 65% 12%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 40 100% 50%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --success: 160 84% 39%;
+  --success-foreground: 0 0% 98%;
+  --warning: 40 100% 50%;
+  --warning-foreground: 240 5.9% 10%;
+  --info: 230 100% 60%;
+  --info-foreground: 0 0% 98%;
+  --ring: 217 91% 60%;
+  --radius: 0.5rem;
+  --chart-1: 217 91% 60%;
+  --chart-2: 262 83% 65%;
+  --chart-3: 160 84% 39%;
+  --chart-4: 40 100% 50%;
+  --chart-5: 0 84.2% 60.2%;
+
+  /* Sidebar colors */
+  --sidebar-background: 225 60% 18%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 217 91% 60%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 210 100% 50%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 226 40% 25%;
+  --sidebar-ring: 217 91% 60%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  /* Dashboard background image */
+  .dashboard-page {
+    background-image: url('/assets/bg-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  
+  /* Overlay to maintain readability */
+  .dashboard-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 40, 0.7); /* Dark blue overlay with opacity */
+    z-index: -1;
+  }
+}
+
+@layer components {
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-sm;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+  
+  .terminal-text {
+    font-family: 'Consolas', 'Monaco', monospace;
+  }
+  
+  .device-card {
+    @apply transition-all duration-300;
+  }
+  
+  .device-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .menu-item {
+    @apply rounded-lg transition-all duration-200;
+  }
+  
+  .menu-item:hover {
+    @apply bg-primary/10 border-l-2 border-primary;
+  }
+  
+  .menu-item.active {
+    @apply bg-primary/10 border-l-2 border-primary;
+  }
+  
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(54, 153, 255, 0.7);
+    }
+    
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(54, 153, 255, 0);
+    }
+    
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(54, 153, 255, 0);
+    }
+  }
+
+  .status-indicator {
+    @apply relative pl-4;
+  }
+  
+  .status-indicator::before {
+    content: '';
+    @apply absolute left-0 top-1/2 w-2 h-2 -translate-y-1/2 rounded-full;
+  }
+  
+  .status-online::before {
+    @apply bg-green-500;
+  }
+  
+  .status-offline::before {
+    @apply bg-red-500;
+  }
+  
+  .status-idle::before {
+    @apply bg-yellow-500;
+  }
+}
